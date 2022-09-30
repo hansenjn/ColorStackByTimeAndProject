@@ -38,6 +38,13 @@ selectImage(copyID);
 run("Stack to Hyperstack...", "order=xyczt(default) channels=1 slices="
 		+ slices + " frames=" + frames + " display=Color");
 
+if(frames == 1){
+	IJ.log("Your image contains only one frame and thus can't be processed.");
+	IJ.log("Note: Eventually in your image frames and slices are incorrectly defined.");
+	IJ.log("Check this at Image > Hyperstacks > Reorder Hyperstack.");
+	IJ.log("If you have many slices that should be frames, change slices and frames here and run macro again.");
+	exit("Color Coding obsolete. Contains only one frame (more details in LOG)");
+}
 
 for (i = 0; i < frames; i++) {
 		colorscale = floor((256 / frames) * i);
