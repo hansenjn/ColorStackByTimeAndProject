@@ -23,7 +23,7 @@ run("8-bit");
 Stack.getDimensions(ww, hh, channels, slices, frames);
 newImage("temp", "8-bit White", ww, hh, 1);
 tempID = getImageID();
-run("mpl-plasma");
+run("mpl-plasma");  //Replace "mpl-plasma" LUT to any LUT you like (e.g., "Spectrum", See all available LUTs and their names in your ImageJ at Image > Color > Display LUTs)
 getLut(rA, gA, bA);
 
 nrA = newArray(256);
@@ -40,7 +40,7 @@ run("Stack to Hyperstack...", "order=xyczt(default) channels=1 slices="
 
 
 for (i = 0; i < frames; i++) {
-		colorscale = floor((256 / 500) * i);
+		colorscale = floor((256 / frames) * i);
 		for (j = 0; j < 256; j++) {
 			intensityfactor = j / 255;
 			nrA[j] = round(rA[colorscale] * intensityfactor);
